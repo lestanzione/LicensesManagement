@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:background="@drawable/dialog_border">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:id="@+id/dialogRemoveTitle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/dialogRemoveDivider1"
+            android:layout_below="@+id/dialogRemoveTitle"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/dialog_divider"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textSize="18dp"
+            android:id="@+id/dialogRemoveDescription"
+            android:layout_below="@+id/dialogRemoveDivider1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/dialogRemoveDivider2"
+            android:layout_below="@+id/dialogRemoveDescription"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/dialog_divider"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove"
+            android:id="@+id/dialogRemoveRemoveButton"
+            android:layout_below="@+id/dialogRemoveDivider2"
+            android:layout_alignRight="@+id/dialogRemoveDivider2"
+            android:layout_alignEnd="@+id/dialogRemoveDivider2"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_red"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/dialogRemoveCancelButton"
+            android:layout_alignTop="@+id/dialogRemoveRemoveButton"
+            android:layout_toLeftOf="@+id/dialogRemoveRemoveButton"
+            android:layout_toStartOf="@+id/dialogRemoveRemoveButton"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_blue"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+</RelativeLayout>

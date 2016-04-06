@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="16dp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/contactListItemName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="14dp"
+        android:id="@+id/contactListItemTitle"
+        android:layout_below="@+id/contactListItemName"
+        android:layout_alignLeft="@+id/contactListItemName"
+        android:layout_alignStart="@+id/contactListItemName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="14dp"
+        android:id="@+id/contactListItemAux"
+        android:layout_alignBottom="@+id/contactListItemTitle"
+        android:layout_toRightOf="@+id/contactListItemTitle"
+        android:layout_toEndOf="@+id/contactListItemTitle"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="14dp"
+        android:id="@+id/contactListItemCompanyName"
+        android:layout_alignBottom="@+id/contactListItemAux"
+        android:layout_toRightOf="@+id/contactListItemAux"
+        android:layout_toEndOf="@+id/contactListItemAux"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="12dp"
+        android:id="@+id/contactListItemEmail"
+        android:layout_below="@+id/contactListItemTitle"
+        android:layout_alignLeft="@+id/contactListItemTitle"
+        android:layout_alignStart="@+id/contactListItemTitle"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="12dp"
+        android:id="@+id/contactListItemAux2"
+        android:layout_alignBottom="@+id/contactListItemEmail"
+        android:layout_toRightOf="@+id/contactListItemEmail"
+        android:layout_toEndOf="@+id/contactListItemEmail"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="12dp"
+        android:id="@+id/contactListItemTelNumber"
+        android:layout_alignBottom="@+id/contactListItemAux2"
+        android:layout_toRightOf="@+id/contactListItemAux2"
+        android:layout_toEndOf="@+id/contactListItemAux2"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:textSize="10dp"
+        android:id="@+id/contactListItemRemoveButton"
+        android:layout_alignTop="@+id/contactListItemName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_red"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+
+</RelativeLayout>

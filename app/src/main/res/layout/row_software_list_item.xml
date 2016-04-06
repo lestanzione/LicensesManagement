@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="16dp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/softwareListItemName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="12dp"
+        android:id="@+id/softwareListItemCode"
+        android:layout_below="@+id/softwareListItemName"
+        android:layout_alignLeft="@+id/softwareListItemName"
+        android:layout_alignStart="@+id/softwareListItemName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/softwareListItemAux"
+        android:layout_alignBottom="@+id/softwareListItemCode"
+        android:layout_toRightOf="@+id/softwareListItemCode"
+        android:layout_toEndOf="@+id/softwareListItemCode"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="12dp"
+        android:id="@+id/softwareListItemType"
+        android:layout_alignBottom="@+id/softwareListItemAux"
+        android:layout_toRightOf="@+id/softwareListItemAux"
+        android:layout_toEndOf="@+id/softwareListItemAux"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <!--Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:textSize="10dp"
+        android:id="@+id/removeListItemRemoveButton"
+        android:layout_alignTop="@+id/softwareListItemName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_red"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/-->
+
+</RelativeLayout>
