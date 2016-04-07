@@ -8,6 +8,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +33,16 @@ public class MainActivity extends AppCompatActivity implements
 
     private UserAccess loggedUser;
 
-    private ListView drawerList;
+    private RecyclerView drawerRecyclerView;
     private ArrayAdapter<String> drawerAdapter;
+
+    String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
+    int ICONS[] = {android.R.drawable.ic_delete,
+            android.R.drawable.ic_delete,
+            android.R.drawable.ic_delete,
+            android.R.drawable.ic_delete,
+            android.R.drawable.ic_delete};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements
         loggedUser = (UserAccess) getIntent().getSerializableExtra("loggedUser");
 
         setupDrawer();
-
+/*
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -80,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements
 
             }
         });
+*/
 
     }
 
@@ -88,11 +99,18 @@ public class MainActivity extends AppCompatActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+
+        drawerRecyclerView = (RecyclerView) findViewById(R.id.navDrawer);
+        drawerRecyclerView.setHasFixedSize(true);
+        drawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        addDrawerItems();
+
+
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
 
-        drawerList = (ListView)findViewById(R.id.drawerList);
-        addDrawerItems();
+        //drawerList = (ListView)findViewById(R.id.drawerList);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -116,9 +134,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Companies", "Projects", "Softwares", "Contacts"};
-        drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-        drawerList.setAdapter(drawerAdapter);
+        //String[] osArray = { "Companies", "Projects", "Softwares", "Contacts"};
+        //drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        //drawerList.setAdapter(drawerAdapter);
+        drawerRecyclerView.setAdapter(new DrawerRecyclerAdapter(TITLES, ICONS, "Name", "Email", android.R.drawable.ic_popup_sync));
     }
 
     @Override
