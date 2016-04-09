@@ -2,6 +2,7 @@ package com.stanzione.licensesmanagement.ui;
 
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -25,19 +26,21 @@ public class MainActivity extends AppCompatActivity implements
         CompanyListFragment.OnFragmentInteractionListener,
         ProjectListFragment.OnFragmentInteractionListener,
         SoftwareListFragment.OnFragmentInteractionListener,
-        ContactListFragment.OnFragmentInteractionListener{
+        ContactListFragment.OnFragmentInteractionListener,
+        DrawerRecyclerAdapter.OnDrawerItemListener{
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private String mActivityTitle;
 
     private UserAccess loggedUser;
 
+    //TODO: choose between NavigationView or RecyclerView
+    //private NavigationView drawerNavigationView;
     private RecyclerView drawerRecyclerView;
     private ArrayAdapter<String> drawerAdapter;
 
-    String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
-    int ICONS[] = {android.R.drawable.ic_delete,
+    private static final String TITLES[] = {"Companies", "Projects", "Softwares", "Contacts"};
+    private static final int ICONS[] = {android.R.drawable.ic_delete,
             android.R.drawable.ic_delete,
             android.R.drawable.ic_delete,
             android.R.drawable.ic_delete,
@@ -52,45 +55,6 @@ public class MainActivity extends AppCompatActivity implements
         loggedUser = (UserAccess) getIntent().getSerializableExtra("loggedUser");
 
         setupDrawer();
-/*
-        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                if (position == 0) {
-                    CompanyListFragment companyListFragment = CompanyListFragment.newInstance(loggedUser);
-
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.mainBody, companyListFragment).commit();
-                }
-                else if (position == 1) {
-                    ProjectListFragment projectListFragment = ProjectListFragment.newInstance(loggedUser);
-
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.mainBody, projectListFragment).commit();
-                }
-                else if (position == 2) {
-                    SoftwareListFragment softwareListFragment = SoftwareListFragment.newInstance(loggedUser);
-
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.mainBody, softwareListFragment).commit();
-                }
-                else if (position == 3) {
-                    ContactListFragment contactListFragment = ContactListFragment.newInstance(loggedUser);
-
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.mainBody, contactListFragment).commit();
-                }
-
-                mDrawerLayout.closeDrawers();
-
-            }
-        });
-*/
 
     }
 
@@ -99,18 +63,15 @@ public class MainActivity extends AppCompatActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
+        //TODO: choose between NavigationView or RecyclerView
+        //drawerNavigationView = (ListView)findViewById(R.id.navDrawer);
         drawerRecyclerView = (RecyclerView) findViewById(R.id.navDrawer);
         drawerRecyclerView.setHasFixedSize(true);
         drawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        addDrawerItems();
-
-
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        mActivityTitle = getTitle().toString();
 
-        //drawerList = (ListView)findViewById(R.id.drawerList);
+        addDrawerItems();
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -137,7 +98,17 @@ public class MainActivity extends AppCompatActivity implements
         //String[] osArray = { "Companies", "Projects", "Softwares", "Contacts"};
         //drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         //drawerList.setAdapter(drawerAdapter);
-        drawerRecyclerView.setAdapter(new DrawerRecyclerAdapter(TITLES, ICONS, "Name", "Email", android.R.drawable.ic_popup_sync));
+        drawerRecyclerView.setAdapter(
+                new DrawerRecyclerAdapter(
+                        this,
+                        TITLES,
+                        ICONS,
+                        loggedUser.getFirstName() + " " + loggedUser.getLastName(),
+                        loggedUser.getEmail(),
+                        android.R.drawable.sym_def_app_icon
+                )
+        );
+
     }
 
     @Override
@@ -166,4 +137,42 @@ public class MainActivity extends AppCompatActivity implements
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    @Override
+    public void onDrawerItemSelected(View view) {
+        int itemPosition = drawerRecyclerView.getChildLayoutPosition(view);
+
+        if (itemPosition == 1) {
+            CompanyListFragment companyListFragment = CompanyListFragment.newInstance(loggedUser);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.mainBody, companyListFragment).commit();
+        }
+        else if (itemPosition == 2) {
+            ProjectListFragment projectListFragment = ProjectListFragment.newInstance(loggedUser);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.mainBody, projectListFragment).commit();
+        }
+        else if (itemPosition == 3) {
+            SoftwareListFragment softwareListFragment = SoftwareListFragment.newInstance(loggedUser);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.mainBody, softwareListFragment).commit();
+        }
+        else if (itemPosition == 4) {
+            ContactListFragment contactListFragment = ContactListFragment.newInstance(loggedUser);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.mainBody, contactListFragment).commit();
+        }
+
+        mDrawerLayout.closeDrawers();
+
+    }
+
 }
