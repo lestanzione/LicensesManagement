@@ -27,6 +27,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import android.support.v7.widget.*;
 
 public class LoginActivity extends AppCompatActivity implements Operations.OperationsCallback{
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 
+	private Toolbar toolbar;
     private Button btnLogin;
     private EditText edLogin;
     private EditText edPass;
@@ -45,9 +47,14 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
         edLogin = (EditText) findViewById(R.id.edLogin);
         edPass = (EditText) findViewById(R.id.edPassword);
 
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setTitle("Licenses Management");
+		
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.R;
 import com.stanzione.licensesmanagement.model.UserAccess;
+import android.support.v7.widget.*;
 
 public class MainActivity extends AppCompatActivity implements
         CompanyListFragment.OnFragmentInteractionListener,
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+	private Toolbar toolbar;
 
     private UserAccess loggedUser;
 
@@ -60,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setupDrawer(){
 
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setTitle("Licenses Management");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -145,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements
         if (itemPosition == 1) {
             CompanyListFragment companyListFragment = CompanyListFragment.newInstance(loggedUser);
 
+			getSupportActionBar().setTitle("Companies");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.mainBody, companyListFragment).commit();
@@ -152,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements
         else if (itemPosition == 2) {
             ProjectListFragment projectListFragment = ProjectListFragment.newInstance(loggedUser);
 
+			getSupportActionBar().setTitle("Projects");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.mainBody, projectListFragment).commit();
@@ -159,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements
         else if (itemPosition == 3) {
             SoftwareListFragment softwareListFragment = SoftwareListFragment.newInstance(loggedUser);
 
+			getSupportActionBar().setTitle("Softwares");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.mainBody, softwareListFragment).commit();
@@ -166,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements
         else if (itemPosition == 4) {
             ContactListFragment contactListFragment = ContactListFragment.newInstance(loggedUser);
 
+			getSupportActionBar().setTitle("Contacts");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.mainBody, contactListFragment).commit();

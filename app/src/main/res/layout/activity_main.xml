@@ -7,10 +7,38 @@
     android:layout_height="match_parent">
 
     <!-- The first child in the layout is for the main Activity UI-->
-    <FrameLayout
-        android:id="@+id/mainBody"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+	<android.support.design.widget.CoordinatorLayout
+		android:id="@+id/usersCoordinatorLayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<android.support.design.widget.AppBarLayout
+			android:id="@+id/appBar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:minHeight="?attr/actionBarSize"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:theme="@style/ToolBarStyle"
+				app:layout_scrollFlags="scroll|enterAlways">
+			</android.support.v7.widget.Toolbar>
+
+		</android.support.design.widget.AppBarLayout>
+		
+		<FrameLayout
+			android:id="@+id/mainBody"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+		
+	</android.support.design.widget.CoordinatorLayout>
+
+		
+    
 
     <!-- Side navigation drawer UI -->
     <android.support.v7.widget.RecyclerView
