@@ -2,9 +2,9 @@ package com.stanzione.licensesmanagement.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,19 +14,11 @@ import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
 import com.stanzione.licensesmanagement.model.UserAccess;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import android.support.v7.widget.*;
 
 public class LoginActivity extends AppCompatActivity implements Operations.OperationsCallback{
@@ -37,8 +29,10 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
 
 	private Toolbar toolbar;
     private Button btnLogin;
-    private EditText edLogin;
-    private EditText edPass;
+    private TextInputLayout loginTextInput;
+    private TextInputLayout passwordTextInput;
+    private EditText usernameEditText;
+    private EditText passwordEditText;
 
     public AsyncTask<String, Void, Integer> doLoginTask;
 
@@ -48,8 +42,10 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
         setContentView(R.layout.activity_login);
 
 		toolbar = (Toolbar) findViewById(R.id.toolbar);
-        edLogin = (EditText) findViewById(R.id.edLogin);
-        edPass = (EditText) findViewById(R.id.edPassword);
+        loginTextInput = (TextInputLayout) findViewById(R.id.usernameTextInput);
+        passwordTextInput = (TextInputLayout) findViewById(R.id.passwordTextInput);
+        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 
 		toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
@@ -67,16 +63,32 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
 
     private void doLogin(){
 
-        String login = edLogin.getText().toString();
-        String pass = edPass.getText().toString();
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
 
-        if(login.trim().isEmpty() || pass.trim().isEmpty()){
-            Toast.makeText(this, "Please, fill in the fields above", Toast.LENGTH_LONG).show();
-            return;
+        boolean hasError = false;
+
+        if(username.trim().isEmpty()){
+            loginTextInput.setError("Fill in the username");
+            hasError = true;
+        }
+        else{
+            loginTextInput.setErrorEnabled(false);
         }
 
+        if(password.trim().isEmpty()){
+            passwordTextInput.setError("Fill in the password");
+            hasError = true;
+        }
+        else{
+            passwordTextInput.setErrorEnabled(false);
+        }
+
+        if(hasError)
+            return;
+
         Operations ops = new Operations(this, CODE_LOGIN);
-        ops.doLogin(login, pass);
+        ops.doLogin(username, password);
 
     }
 

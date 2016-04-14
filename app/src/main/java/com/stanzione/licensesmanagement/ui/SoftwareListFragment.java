@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +33,10 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  *
  */
-public class SoftwareListFragment extends Fragment implements Operations.OperationsCallback{
+public class SoftwareListFragment extends Fragment implements Operations.OperationsCallback, SoftwareRecyclerAdapter.OnSoftwareListener{
 
     private static final int CODE_LIST_SOFTWARE = 1;
+    private static final int CODE_REMOVE_SOFTWARE = 2;
 
     private static final String ARG_LOGGED_USER = "loggedUser";
 
@@ -42,7 +45,7 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
     private static final String TAG = SoftwareListFragment.class.getSimpleName();
 
     private Button newSoftwareButton;
-    private ListView softwareList;
+    private RecyclerView softwareRecyclerView;
     private ArrayList<Software> softwareArrayList;
 
     private OnFragmentInteractionListener mListener;
@@ -80,34 +83,12 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
         View view = inflater.inflate(R.layout.fragment_software_list, container, false);
 
         newSoftwareButton = (Button) view.findViewById(R.id.newSoftwareButton);
-        softwareList = (ListView) view.findViewById(R.id.softwaresListView);
+        softwareRecyclerView = (RecyclerView) view.findViewById(R.id.softwareRecyclerView);
 
         newSoftwareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCreateSoftwareFragment();
-            }
-        });
-
-        softwareList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Software selectedSoftware = softwareArrayList.get(position);
-
-                Log.d(TAG, "selectedSoftware ID: " + selectedSoftware.getId());
-
-                SoftwareDetailsFragment softwareDetailsFragment = SoftwareDetailsFragment.newInstance(loggedUser, selectedSoftware);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack
-                transaction.replace(R.id.mainBody, softwareDetailsFragment);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
-
             }
         });
 
@@ -162,7 +143,8 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
 
         softwareArrayList = (ArrayList<Software>) returnObject;
 
-        softwareList.setAdapter(new SoftwareListAdapter(getActivity().getApplicationContext(), softwareArrayList));
+        softwareRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        softwareRecyclerView.setAdapter(new SoftwareRecyclerAdapter(getActivity(), softwareArrayList, loggedUser, this));
 
     }
 
@@ -173,6 +155,31 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onSoftwareSelected(int position) {
+
+        Software selectedSoftware = softwareArrayList.get(position);
+
+        Log.d(TAG, "selectedSoftware ID: " + selectedSoftware.getId());
+
+        SoftwareDetailsFragment softwareDetailsFragment = SoftwareDetailsFragment.newInstance(loggedUser, selectedSoftware);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, softwareDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onSoftwareToDelete(int position) {
 
     }
 

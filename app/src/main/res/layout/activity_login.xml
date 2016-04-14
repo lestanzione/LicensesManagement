@@ -28,46 +28,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-		
-    	<TextView
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="Login"
-        	android:layout_centerHorizontal="true"
-        	android:id="@+id/tvLogin" />
 
-    	<EditText
-        	android:layout_width="200dp"
-        	android:layout_height="wrap_content"
-        	android:id="@+id/edLogin"
-        	android:layout_below="@+id/tvLogin"
-        	android:layout_centerHorizontal="true"
-        	android:layout_marginTop="35dp" />
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/usernameTextInput"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="16dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginEnd="16dp">
 
-    	<TextView
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="Password"
-        	android:layout_centerHorizontal="true"
-        	android:id="@+id/tvPassword"
-        	android:layout_below="@+id/edLogin"
-        	android:layout_marginTop="35dp" />
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/usernameEditText"
+				android:hint="Username"
+				android:layout_centerHorizontal="true"
+				android:layout_gravity="center_horizontal"/>
 
-    	<EditText
-        	android:layout_width="200dp"
-        	android:layout_height="wrap_content"
-        	android:id="@+id/edPassword"
-        	android:layout_below="@+id/tvPassword"
-        	android:layout_centerHorizontal="true"
-        	android:layout_marginTop="35dp" />
+		</android.support.design.widget.TextInputLayout>
+
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/passwordTextInput"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/usernameTextInput"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="24dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginEnd="16dp">
+
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/passwordEditText"
+				android:hint="Password"
+				android:layout_centerHorizontal="true"
+				android:layout_gravity="center_horizontal"/>
+
+		</android.support.design.widget.TextInputLayout>
 
     	<Button
         	android:id="@+id/btnLogin"
         	android:text="Login"
-        	android:layout_width="wrap_content"
+        	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:layout_centerHorizontal="true"
-        	android:layout_below="@+id/edPassword"
+        	android:layout_below="@+id/passwordTextInput"
+			android:layout_marginTop="24dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginEnd="16dp"
         	android:background="@drawable/button_green"
         	android:minHeight="0dp"
         	android:minWidth="0dp"

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
  * Use the {@link CompanyRelatedContactsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CompanyRelatedContactsFragment extends Fragment implements Operations.OperationsCallback{
+public class CompanyRelatedContactsFragment extends Fragment implements Operations.OperationsCallback, ContactRecyclerAdapter.OnContactListener{
 
     private static final int CODE_LIST_CONTACTS_FROM_COMPANY = 1;
 
@@ -40,7 +42,7 @@ public class CompanyRelatedContactsFragment extends Fragment implements Operatio
 
     private static final String TAG = CompanyRelatedContactsFragment.class.getSimpleName();
 
-    private ListView companyRelatedContactsList;
+    private RecyclerView companyRelatedContactRecyclerView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,7 +82,7 @@ public class CompanyRelatedContactsFragment extends Fragment implements Operatio
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company_related_contacts, container, false);
 
-        companyRelatedContactsList = (ListView) view.findViewById(R.id.companyRelatedContactsListView);
+        companyRelatedContactRecyclerView = (RecyclerView) view.findViewById(R.id.companyRelatedContactRecyclerView);
 
         return view;
     }
@@ -118,7 +120,8 @@ public class CompanyRelatedContactsFragment extends Fragment implements Operatio
 
         ArrayList<Contact> contactArrayList = (ArrayList<Contact>) returnObject;
 
-        companyRelatedContactsList.setAdapter(new ContactListAdapter(getActivity(), contactArrayList, loggedUser));
+        companyRelatedContactRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        companyRelatedContactRecyclerView.setAdapter(new ContactRecyclerAdapter(getContext(), contactArrayList, loggedUser, this));
 
     }
 
@@ -129,6 +132,16 @@ public class CompanyRelatedContactsFragment extends Fragment implements Operatio
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onContactSelected(int position) {
+
+    }
+
+    @Override
+    public void onContactToDelete(int position) {
 
     }
 

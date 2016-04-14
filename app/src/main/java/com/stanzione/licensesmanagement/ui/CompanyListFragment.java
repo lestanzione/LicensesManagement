@@ -7,17 +7,25 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
 import com.stanzione.licensesmanagement.model.Company;
+import com.stanzione.licensesmanagement.model.Contact;
 import com.stanzione.licensesmanagement.model.UserAccess;
 
 import org.json.JSONArray;
@@ -34,9 +42,10 @@ import java.util.ArrayList;
  * Use the {@link CompanyListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CompanyListFragment extends Fragment implements Operations.OperationsCallback {
+public class CompanyListFragment extends Fragment implements Operations.OperationsCallback, CompanyRecyclerAdapter.OnCompanyListener {
 
     private static final int CODE_LIST_COMPANY = 1;
+    private static final int CODE_REMOVE_COMPANY = 2;
 
     private static final String ARG_LOGGED_USER = "loggedUser";
 
@@ -45,9 +54,10 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
     private static final String TAG = CompanyListFragment.class.getSimpleName();
 
     private Button newCompanyButton;
-    private ListView companyList;
-
+    private RecyclerView companyRecyclerView;
     private ArrayList<Company> companyArrayList;
+
+    private CompanyRecyclerAdapter companyRecyclerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -84,35 +94,15 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company_list, container, false);
 
+        setHasOptionsMenu(true);
+
         newCompanyButton = (Button) view.findViewById(R.id.newCompanyButton);
-        companyList = (ListView) view.findViewById(R.id.companiesListView);
+        companyRecyclerView = (RecyclerView) view.findViewById(R.id.companyRecyclerView);
 
         newCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCreateCompanyFragment();
-            }
-        });
-
-        companyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Company selectedCompany = companyArrayList.get(position);
-
-                Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
-
-                CompanyDetailsFragment companyDetailsFragment = CompanyDetailsFragment.newInstance(loggedUser, selectedCompany);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack
-                transaction.replace(R.id.mainBody, companyDetailsFragment);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
-
             }
         });
 
@@ -126,6 +116,24 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         Operations ops = new Operations(this, CODE_LIST_COMPANY);
         ops.getCompanyList();
 
+    }
+
+    @Override
+     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_company_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.menu_company_edit:
+                companyRecyclerAdapter.setShowEdit(!companyRecyclerAdapter.getShowEdit());
+                companyRecyclerAdapter.notifyDataSetChanged();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void showCreateCompanyFragment(){
@@ -165,9 +173,19 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
 
         Log.d(TAG, "Operation success!");
 
-        companyArrayList = (ArrayList<Company>) returnObject;
+        if(operationCode == CODE_LIST_COMPANY) {
 
-        companyList.setAdapter(new CompanyListAdapter(getActivity(), companyArrayList, loggedUser));
+            companyArrayList = (ArrayList<Company>) returnObject;
+
+            companyRecyclerAdapter = new CompanyRecyclerAdapter(getContext(), companyArrayList, loggedUser, this);
+
+            companyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            companyRecyclerView.setAdapter(companyRecyclerAdapter);
+
+        }
+        else if(operationCode == CODE_REMOVE_COMPANY){
+            Toast.makeText(getContext(), "Company removed successfully!", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -178,6 +196,38 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onCompanySelected(int position) {
+
+        Company selectedCompany = companyArrayList.get(position);
+
+        Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
+
+        CompanyDetailsFragment companyDetailsFragment = CompanyDetailsFragment.newInstance(loggedUser, selectedCompany);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, companyDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onCompanyToDelete(int position) {
+
+        Company selectedCompany = companyArrayList.get(position);
+
+        Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
+
+        Operations ops = new Operations(this, CODE_REMOVE_COMPANY);
+        ops.removeCompany(selectedCompany.getId(), loggedUser.getId());
 
     }
 

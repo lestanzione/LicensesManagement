@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
@@ -31,9 +34,10 @@ import java.util.ArrayList;
  * Use the {@link ContactListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContactListFragment extends Fragment implements Operations.OperationsCallback{
+public class ContactListFragment extends Fragment implements Operations.OperationsCallback, ContactRecyclerAdapter.OnContactListener{
 
     private static final int CODE_LIST_CONTACT = 1;
+    private static final int CODE_REMOVE_CONTACT = 2;
 
     private static final String ARG_LOGGED_USER = "loggedUser";
 
@@ -42,7 +46,7 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
     private static final String TAG = ContactListFragment.class.getSimpleName();
 
     private Button newContactButton;
-    private ListView contactList;
+    private RecyclerView contactRecyclerView;
     private ArrayList<Contact> contactArrayList;
 
     private OnFragmentInteractionListener mListener;
@@ -81,34 +85,12 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
         View view = inflater.inflate(R.layout.fragment_contact_list, container, false);
 
         newContactButton = (Button) view.findViewById(R.id.newContactButton);
-        contactList = (ListView) view.findViewById(R.id.contactsListView);
+        contactRecyclerView = (RecyclerView) view.findViewById(R.id.contactRecyclerView);
 
         newContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCreateContactFragment();
-            }
-        });
-
-        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Contact selectedContact = contactArrayList.get(position);
-
-                Log.d(TAG, "selectedContact ID: " + selectedContact.getId());
-
-                ContactDetailsFragment contactDetailsFragment = ContactDetailsFragment.newInstance(loggedUser, selectedContact);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack
-                transaction.replace(R.id.mainBody, contactDetailsFragment);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
-
             }
         });
 
@@ -161,9 +143,19 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
 
         Log.d(TAG, "Operation success!");
 
-        contactArrayList = (ArrayList<Contact>) returnObject;
+        if(operationCode == CODE_LIST_CONTACT) {
 
-        contactList.setAdapter(new ContactListAdapter(getActivity(), contactArrayList, loggedUser));
+            contactArrayList = (ArrayList<Contact>) returnObject;
+
+            contactRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            contactRecyclerView.setAdapter(new ContactRecyclerAdapter(getContext(), contactArrayList, loggedUser, this));
+
+        }
+        else if(operationCode == CODE_REMOVE_CONTACT){
+
+            Toast.makeText(getContext(), "Contact removed successfully!", Toast.LENGTH_LONG).show();
+
+        }
 
     }
 
@@ -174,6 +166,38 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onContactSelected(int position) {
+
+        Contact selectedContact = contactArrayList.get(position);
+
+        Log.d(TAG, "selectedContact ID: " + selectedContact.getId());
+
+        ContactDetailsFragment contactDetailsFragment = ContactDetailsFragment.newInstance(loggedUser, selectedContact);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, contactDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onContactToDelete(int position) {
+
+        Contact selectedContact = contactArrayList.get(position);
+
+        Log.d(TAG, "selectedContact ID: " + selectedContact.getId());
+
+        Operations ops = new Operations(this, CODE_REMOVE_CONTACT);
+        ops.removeContact(selectedContact.getId(), loggedUser.getId());
 
     }
 

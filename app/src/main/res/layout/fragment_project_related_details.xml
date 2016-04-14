@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.stanzione.licensesmanagement.ui.ProjectRelatedDetailsFragment">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -303,7 +303,8 @@
                 android:layout_toRightOf="@+id/projectDetailActiveTextView"
                 android:layout_toEndOf="@+id/projectDetailActiveTextView"
                 android:layout_marginTop="15dp"
-                android:checked="false" />
+                android:checked="false"
+                android:enabled="false"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -327,6 +328,6 @@
 
         </RelativeLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

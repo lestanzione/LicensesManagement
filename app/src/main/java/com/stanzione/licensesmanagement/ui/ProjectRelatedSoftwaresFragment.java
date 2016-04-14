@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
  * Use the {@link ProjectRelatedSoftwaresFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProjectRelatedSoftwaresFragment extends Fragment implements Operations.OperationsCallback{
+public class ProjectRelatedSoftwaresFragment extends Fragment implements Operations.OperationsCallback, ProjectSoftwareRecyclerAdapter.OnProjectSoftwareListener{
 
     private static final int CODE_LIST_SOFTWARES_FROM_PROJECT = 1;
 
@@ -39,7 +40,7 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
 
     private static final String TAG = ProjectDetailsFragment.class.getSimpleName();
 
-    private ListView projectRelatedSoftwaresList;
+    private RecyclerView projectRelatedSoftwareRecyclerView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -79,7 +80,7 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_project_related_softwares, container, false);
 
-        projectRelatedSoftwaresList = (ListView) view.findViewById(R.id.projectRelatedSoftwaresListView);
+        projectRelatedSoftwareRecyclerView = (RecyclerView) view.findViewById(R.id.projectRelatedSoftwareRecyclerView);
 
         return view;
     }
@@ -117,7 +118,7 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
 
         ArrayList<ProjectSoftware> projectSoftwareArrayList = (ArrayList<ProjectSoftware>) returnObject;
 
-        projectRelatedSoftwaresList.setAdapter(new ProjectSoftwareListAdapter(getActivity().getApplicationContext(), projectSoftwareArrayList));
+        projectRelatedSoftwareRecyclerView.setAdapter(new ProjectSoftwareRecyclerAdapter(getActivity().getApplicationContext(), projectSoftwareArrayList, loggedUser, this));
 
     }
 
@@ -128,6 +129,16 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onProjectSoftwareSelected(int position) {
+
+    }
+
+    @Override
+    public void onProjectSoftwareToDelete(int position) {
 
     }
 

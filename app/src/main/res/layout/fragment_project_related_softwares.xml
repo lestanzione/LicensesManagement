@@ -4,20 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.stanzione.licensesmanagement.ui.ProjectRelatedSoftwaresFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Related Softwares"
-        android:id="@+id/projectRelatedSoftwareListTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/projectRelatedSoftwaresListView"
-        android:layout_below="@+id/projectRelatedSoftwareListTitle"
+        android:id="@+id/projectRelatedSoftwareRecyclerView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
  * Use the {@link CompanyRelatedProjectsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CompanyRelatedProjectsFragment extends Fragment implements Operations.OperationsCallback{
+public class CompanyRelatedProjectsFragment extends Fragment implements Operations.OperationsCallback, ProjectRecyclerAdapter.OnProjectListener{
 
     private static final int CODE_LIST_PROJECTS_FROM_COMPANY = 1;
 
@@ -40,7 +42,7 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
 
     private static final String TAG = CompanyRelatedProjectsFragment.class.getSimpleName();
 
-    private ListView companyRelatedProjectsList;
+    private RecyclerView companyRelatedProjectRecyclerView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,7 +82,7 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company_related_projects, container, false);
 
-        companyRelatedProjectsList = (ListView) view.findViewById(R.id.companyRelatedProjectsListView);
+        companyRelatedProjectRecyclerView = (RecyclerView) view.findViewById(R.id.companyRelatedProjectRecyclerView);
 
         return view;
     }
@@ -118,7 +120,8 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
 
         ArrayList<Project> projectArrayList = (ArrayList<Project>) returnObject;
 
-        companyRelatedProjectsList.setAdapter(new ProjectListAdapter(getActivity(), projectArrayList, loggedUser));
+        companyRelatedProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        companyRelatedProjectRecyclerView.setAdapter(new ProjectRecyclerAdapter(getContext(), projectArrayList, loggedUser, this));
 
     }
 
@@ -129,6 +132,16 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onProjectSelected(int position) {
+
+    }
+
+    @Override
+    public void onProjectToDelete(int position) {
 
     }
 

@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
@@ -30,19 +33,20 @@ import java.util.ArrayList;
  * Use the {@link ProjectListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProjectListFragment extends Fragment implements Operations.OperationsCallback{
+public class ProjectListFragment extends Fragment implements Operations.OperationsCallback, ProjectRecyclerAdapter.OnProjectListener{
 
     private static final int CODE_LIST_PROJECT = 1;
+    private static final int CODE_REMOVE_PROJECT = 2;
 
     private static final String ARG_LOGGED_USER = "loggedUser";
 
     private UserAccess loggedUser;
-    private ArrayList<Project> projectArrayList;
 
     private static final String TAG = ProjectListFragment.class.getSimpleName();
 
     private Button newProjectButton;
-    private ListView projectList;
+    private RecyclerView projectRecyclerView;
+    private ArrayList<Project> projectArrayList;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,34 +84,12 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
         View view = inflater.inflate(R.layout.fragment_project_list, container, false);
 
         newProjectButton = (Button) view.findViewById(R.id.newProjectButton);
-        projectList = (ListView) view.findViewById(R.id.projectsListView);
+        projectRecyclerView = (RecyclerView) view.findViewById(R.id.projectRecyclerView);
 
         newProjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCreateProjectFragment();
-            }
-        });
-
-        projectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Project selectedProject = projectArrayList.get(position);
-
-                Log.d(TAG, "selectedProject ID: " + selectedProject.getId());
-
-                ProjectDetailsFragment projectDetailsFragment = ProjectDetailsFragment.newInstance(loggedUser, selectedProject);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack
-                transaction.replace(R.id.mainBody, projectDetailsFragment);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
-
             }
         });
 
@@ -160,9 +142,17 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
 
         Log.d(TAG, "Operation success!");
 
-        projectArrayList = (ArrayList<Project>) returnObject;
+        if(operationCode == CODE_LIST_PROJECT) {
 
-        projectList.setAdapter(new ProjectListAdapter(getActivity(), projectArrayList, loggedUser));
+            projectArrayList = (ArrayList<Project>) returnObject;
+
+            projectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            projectRecyclerView.setAdapter(new ProjectRecyclerAdapter(getContext(), projectArrayList, loggedUser, this));
+
+        }
+        else if(operationCode == CODE_REMOVE_PROJECT){
+            Toast.makeText(getContext(), "Project removed successfully!", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -173,6 +163,38 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+    }
+
+    @Override
+    public void onProjectSelected(int position) {
+
+        Project selectedProject = projectArrayList.get(position);
+
+        Log.d(TAG, "selectedProject ID: " + selectedProject.getId());
+
+        ProjectDetailsFragment projectDetailsFragment = ProjectDetailsFragment.newInstance(loggedUser, selectedProject);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, projectDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onProjectToDelete(int position) {
+
+        Project selectedProject = projectArrayList.get(position);
+
+        Log.d(TAG, "selectedProject ID: " + selectedProject.getId());
+
+        Operations ops = new Operations(this, CODE_REMOVE_PROJECT);
+        ops.removeCompany(selectedProject.getId(), loggedUser.getId());
 
     }
 

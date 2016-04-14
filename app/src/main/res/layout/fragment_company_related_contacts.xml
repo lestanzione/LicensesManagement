@@ -4,20 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.stanzione.licensesmanagement.ui.CompanyRelatedContactsFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Related Contacts"
-        android:id="@+id/companyRelatedContactsListTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/companyRelatedContactsListView"
-        android:layout_below="@+id/companyRelatedContactsListTitle"
+        android:id="@+id/companyRelatedContactRecyclerView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
