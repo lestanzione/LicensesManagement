@@ -18,12 +18,13 @@
                 android:id="@+id/companyDetailIdTextView"
                 android:text="ID"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -35,11 +36,11 @@
                 android:layout_below="@+id/companyDetailIdTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -47,13 +48,14 @@
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailNameTextView"
                 android:layout_below="@+id/companyDetailId"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -65,11 +67,11 @@
                 android:layout_below="@+id/companyDetailNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -77,13 +79,14 @@
                 android:layout_height="wrap_content"
                 android:text="Address"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailAddressTextView"
                 android:layout_below="@+id/companyDetailName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -95,11 +98,11 @@
                 android:layout_below="@+id/companyDetailAddressTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -107,13 +110,14 @@
                 android:layout_height="wrap_content"
                 android:text="Creation Date"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailCreationDateTextView"
                 android:layout_below="@+id/companyDetailAddress"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -125,11 +129,11 @@
                 android:layout_below="@+id/companyDetailCreationDateTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -137,13 +141,14 @@
                 android:layout_height="wrap_content"
                 android:text="Modification Date"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailModificationDateTextView"
                 android:layout_below="@+id/companyDetailCreationDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -155,11 +160,11 @@
                 android:layout_below="@+id/companyDetailModificationDateTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -167,13 +172,14 @@
                 android:layout_height="wrap_content"
                 android:text="Creation User"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailCreationUserTextView"
                 android:layout_below="@+id/companyDetailModificationDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -185,11 +191,11 @@
                 android:layout_below="@+id/companyDetailCreationUserTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -197,13 +203,14 @@
                 android:layout_height="wrap_content"
                 android:text="Modification User"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailModificationUserTextView"
                 android:layout_below="@+id/companyDetailCreationUser"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -215,11 +222,11 @@
                 android:layout_below="@+id/companyDetailModificationUserTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -227,13 +234,14 @@
                 android:layout_height="wrap_content"
                 android:text="Active"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyDetailActiveTextView"
                 android:layout_below="@+id/companyDetailModificationUser"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -247,24 +255,22 @@
                 android:enabled="false"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/companyDetailEditButton"
                 android:text="Edit Company"
+                android:textColor="@color/colorPrimaryText"
                 android:layout_below="@+id/companyDetailActiveTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_green"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorAccent"
                 android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
         </RelativeLayout>
 

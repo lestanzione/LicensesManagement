@@ -141,6 +141,11 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
     }
 
     @Override
+    public void onProjectToEdit(int position) {
+
+    }
+
+    @Override
     public void onProjectToDelete(int position) {
 
     }

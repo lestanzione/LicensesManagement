@@ -17,13 +17,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/companyEditIdTextView"
                 android:text="ID"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -35,25 +36,26 @@
                 android:layout_below="@+id/companyEditIdTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail_disabled" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 android:id="@+id/companyEditNameTextView"
                 android:layout_below="@+id/companyEditId"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -65,11 +67,11 @@
                 android:layout_below="@+id/companyEditNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail_disabled" />
 
             <TextView
@@ -77,13 +79,14 @@
                 android:layout_height="wrap_content"
                 android:text="Address"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyEditAddressTextView"
                 android:layout_below="@+id/companyEditName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <EditText
@@ -92,14 +95,15 @@
                 android:text="New Text"
                 android:textSize="14sp"
                 android:id="@+id/companyEditAddress"
+                android:inputType="text"
                 android:layout_below="@+id/companyEditAddressTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -107,13 +111,14 @@
                 android:layout_height="wrap_content"
                 android:text="Creation Date"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyEditCreationDateTextView"
                 android:layout_below="@+id/companyEditAddress"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -125,11 +130,11 @@
                 android:layout_below="@+id/companyEditCreationDateTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail_disabled" />
 
             <TextView
@@ -137,13 +142,14 @@
                 android:layout_height="wrap_content"
                 android:text="Modification Date"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyEditModificationDateTextView"
                 android:layout_below="@+id/companyEditCreationDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -155,11 +161,11 @@
                 android:layout_below="@+id/companyEditModificationDateTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail_disabled" />
 
             <TextView
@@ -167,13 +173,14 @@
                 android:layout_height="wrap_content"
                 android:text="Creation User"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyEditCreationUserTextView"
                 android:layout_below="@+id/companyEditModificationDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -185,11 +192,11 @@
                 android:layout_below="@+id/companyEditCreationUserTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail_disabled" />
 
             <TextView
@@ -197,13 +204,14 @@
                 android:layout_height="wrap_content"
                 android:text="Modification User"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyEditModificationUserTextView"
                 android:layout_below="@+id/companyEditCreationUser"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -215,11 +223,11 @@
                 android:layout_below="@+id/companyEditModificationUserTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail_disabled" />
 
             <TextView
@@ -227,13 +235,14 @@
                 android:layout_height="wrap_content"
                 android:text="Active"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/companyEditActiveTextView"
                 android:layout_below="@+id/companyEditModificationUser"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -242,29 +251,27 @@
                 android:layout_below="@+id/companyEditModificationUser"
                 android:layout_toRightOf="@+id/companyEditActiveTextView"
                 android:layout_toEndOf="@+id/companyEditActiveTextView"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 android:checked="false"
                 android:enabled="false"/>
             
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/companyEditSaveButton"
                 android:text="Save Company"
+                android:textColor="@color/colorPrimaryText"
                 android:layout_below="@+id/companyEditActiveTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_green"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorAccent"
                 android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"/>
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
 
         </RelativeLayout>
 

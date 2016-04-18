@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/companyListRelativeLayout"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
     android:clickable="true"
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground">
@@ -14,44 +12,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:textSize="16dp"
-        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryText"
         android:id="@+id/companyListItemName"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:textSize="12dp"
+        android:textSize="12sp"
+        android:textColor="@color/colorSecondaryText"
         android:id="@+id/companyListItemAddress"
         android:layout_below="@+id/companyListItemName"
-        android:layout_alignLeft="@+id/companyListItemName"
-        android:layout_alignStart="@+id/companyListItemName" />
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"/>
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove"
-        android:textSize="10dp"
-        android:id="@+id/companyListItemRemoveButton"
-        android:layout_alignTop="@+id/companyListItemName"
+        android:id="@+id/companyListItemRemoveIcon"
+        android:src="@drawable/ic_trash"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/button_red"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"/>
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/companyListItemEditIcon"
+        android:src="@drawable/ic_edit"
+        android:tint="@color/colorAccent"
+        android:layout_toLeftOf="@id/companyListItemRemoveIcon"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        android:layout_below="@id/companyListItemAddress"
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>

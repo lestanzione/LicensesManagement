@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -49,6 +52,8 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
     private RecyclerView contactRecyclerView;
     private ArrayList<Contact> contactArrayList;
 
+    private ContactRecyclerAdapter contactRecyclerAdapter;
+
     private OnFragmentInteractionListener mListener;
 
     public ContactListFragment() {
@@ -83,6 +88,8 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contact_list, container, false);
+
+        setHasOptionsMenu(true);
 
         newContactButton = (Button) view.findViewById(R.id.newContactButton);
         contactRecyclerView = (RecyclerView) view.findViewById(R.id.contactRecyclerView);
@@ -122,6 +129,24 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_company_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.menu_company_manage:
+                contactRecyclerAdapter.setShowEdit(!contactRecyclerAdapter.getShowEdit());
+                contactRecyclerAdapter.notifyDataSetChanged();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof OnFragmentInteractionListener) {
@@ -147,8 +172,10 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
 
             contactArrayList = (ArrayList<Contact>) returnObject;
 
+            contactRecyclerAdapter = new ContactRecyclerAdapter(getContext(), contactArrayList, loggedUser, this);
+
             contactRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            contactRecyclerView.setAdapter(new ContactRecyclerAdapter(getContext(), contactArrayList, loggedUser, this));
+            contactRecyclerView.setAdapter(contactRecyclerAdapter);
 
         }
         else if(operationCode == CODE_REMOVE_CONTACT){
@@ -182,6 +209,26 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
         transaction.replace(R.id.mainBody, contactDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onContactToEdit(int position) {
+
+        Contact selectedContact = contactArrayList.get(position);
+
+        Log.d(TAG, "selectedContact ID: " + selectedContact.getId());
+
+        ContactEditFragment contactEditFragment = ContactEditFragment.newInstance(loggedUser, selectedContact);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, contactEditFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction

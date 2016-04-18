@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements
     private ArrayAdapter<String> drawerAdapter;
 
     private static final String TITLES[] = {"Companies", "Projects", "Softwares", "Contacts"};
-    private static final int ICONS[] = {android.R.drawable.ic_delete,
+    private static final int ICONS[] = {R.drawable.ic_drawer_company,
             android.R.drawable.ic_delete,
             android.R.drawable.ic_delete,
             android.R.drawable.ic_delete,

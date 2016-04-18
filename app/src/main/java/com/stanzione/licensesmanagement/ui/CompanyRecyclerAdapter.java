@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
 
     public interface OnCompanyListener{
         void onCompanySelected(int position);
+        void onCompanyToEdit(int position);
         void onCompanyToDelete(int position);
     }
 
@@ -46,6 +48,7 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
 
     private boolean isFirstLoad = true;
     private boolean showEdit = false;
+    private float originalEditIconPosition = 0.0f;
     private float originalRemoveIconPosition = 0.0f;
 
     public CompanyRecyclerAdapter(Context context, ArrayList<Company> values, UserAccess loggedUser, OnCompanyListener activity) {
@@ -70,7 +73,8 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
         final int companyPosition = position;
 
         if(isFirstLoad){
-            originalRemoveIconPosition = holder.companyListItemRemoveButton.getX();
+            originalEditIconPosition = holder.companyListItemEditIcon.getX();
+            originalRemoveIconPosition = holder.companyListItemRemoveIcon.getX();
             //isFirstLoad = false;
         }
 
@@ -78,29 +82,39 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
         holder.companyListItemAddress.setText(currentCompany.getAddress());
 
         if(showEdit){
-            holder.companyListItemRemoveButton.setVisibility(View.VISIBLE);
+            holder.companyListItemRemoveIcon.setVisibility(View.VISIBLE);
+            holder.companyListItemEditIcon.setVisibility(View.VISIBLE);
             //ObjectAnimator anim = ObjectAnimator.ofFloat(holder.companyListItemAddress, "alpha", 0f, 1f);
             //anim.setDuration(1000);
             //anim.start();
-            ObjectAnimator anim2 = ObjectAnimator.ofFloat(holder.companyListItemRemoveButton, "translationX", holder.companyListItemRemoveButton.getX(), originalRemoveIconPosition);
-            anim2.setDuration(500);
-            anim2.start();
+            ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.companyListItemEditIcon, "translationX", holder.companyListItemEditIcon.getX(), originalEditIconPosition);
+            animEditIcon.setDuration(500);
+            animEditIcon.start();
+            ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.companyListItemRemoveIcon, "translationX", holder.companyListItemRemoveIcon.getX(), originalRemoveIconPosition);
+            animRemoveIcon.setDuration(500);
+            animRemoveIcon.start();
         }
         else{
             if(isFirstLoad) {
-                holder.companyListItemRemoveButton.setVisibility(View.INVISIBLE);
+                holder.companyListItemEditIcon.setVisibility(View.INVISIBLE);
+                holder.companyListItemRemoveIcon.setVisibility(View.INVISIBLE);
             }
             else {
-                holder.companyListItemRemoveButton.setVisibility(View.VISIBLE);
+                holder.companyListItemEditIcon.setVisibility(View.VISIBLE);
+                holder.companyListItemRemoveIcon.setVisibility(View.VISIBLE);
             }
 
-            ObjectAnimator anim2 = ObjectAnimator.ofFloat(holder.companyListItemRemoveButton, "translationX", originalRemoveIconPosition, originalRemoveIconPosition + 300);
-            anim2.setDuration(500);
-            anim2.start();
+            ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.companyListItemEditIcon, "translationX", originalEditIconPosition, originalEditIconPosition + 300);
+            animEditIcon.setDuration(500);
+            animEditIcon.start();
+
+            ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.companyListItemRemoveIcon, "translationX", originalRemoveIconPosition, originalRemoveIconPosition + 300);
+            animRemoveIcon.setDuration(500);
+            animRemoveIcon.start();
 
         }
 
-        holder.companyListItemRemoveButton.setOnClickListener(new View.OnClickListener() {
+        holder.companyListItemRemoveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -122,6 +136,14 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
 
                 builder.create().show();
 
+            }
+        });
+
+        holder.companyListItemEditIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "selectedCompany ID: " + currentCompany.getId());
+                activity.get().onCompanyToEdit(companyPosition);
             }
         });
 
@@ -159,14 +181,16 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
         RelativeLayout companyListRelativeLayout;
         TextView companyListItemName;
         TextView companyListItemAddress;
-        Button companyListItemRemoveButton;
+        ImageView companyListItemEditIcon;
+        ImageView companyListItemRemoveIcon;
 
         public ViewHolder(View userView) {
             super(userView);
             this.companyListRelativeLayout = (RelativeLayout) userView.findViewById(R.id.companyListRelativeLayout);
             this.companyListItemName = (TextView) userView.findViewById(R.id.companyListItemName);
             this.companyListItemAddress = (TextView) userView.findViewById(R.id.companyListItemAddress);
-            this.companyListItemRemoveButton = (Button) userView.findViewById(R.id.companyListItemRemoveButton);
+            this.companyListItemEditIcon = (ImageView) userView.findViewById(R.id.companyListItemEditIcon);
+            this.companyListItemRemoveIcon = (ImageView) userView.findViewById(R.id.companyListItemRemoveIcon);
         }
     }
 

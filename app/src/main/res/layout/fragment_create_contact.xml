@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.stanzione.licensesmanagement.ui.CreateContactFragment">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,13 +17,14 @@
                 android:layout_height="wrap_content"
                 android:text="First Name"
                 android:id="@+id/createContactFirstNameTextView"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <EditText
@@ -31,14 +32,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:id="@+id/createContactFirstNameEditText"
+                android:inputType="text"
                 android:layout_below="@+id/createContactFirstNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -46,13 +48,14 @@
                 android:layout_height="wrap_content"
                 android:text="Last Name"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/createContactLastNameTextView"
                 android:layout_below="@+id/createContactFirstNameEditText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <EditText
@@ -60,14 +63,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:id="@+id/createContactLastNameEditText"
+                android:inputType="text"
                 android:layout_below="@+id/createContactLastNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -75,13 +79,14 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/createContactTitleTextView"
                 android:layout_below="@+id/createContactLastNameEditText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <EditText
@@ -89,14 +94,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:id="@+id/createContactTitleEditText"
+                android:inputType="text"
                 android:layout_below="@+id/createContactTitleTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -104,13 +110,14 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/createContactEmailTextView"
                 android:layout_below="@+id/createContactTitleEditText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <EditText
@@ -118,14 +125,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:id="@+id/createContactEmailEditText"
+                android:inputType="textEmailAddress"
                 android:layout_below="@+id/createContactEmailTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -133,13 +141,14 @@
                 android:layout_height="wrap_content"
                 android:text="Tel Number"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/createContactTelNumberTextView"
                 android:layout_below="@+id/createContactEmailEditText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <EditText
@@ -147,14 +156,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:id="@+id/createContactTelNumberEditText"
+                android:inputType="phone"
                 android:layout_below="@+id/createContactTelNumberTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -162,13 +172,14 @@
                 android:layout_height="wrap_content"
                 android:text="Company"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/createContactCompanyNameTextView"
                 android:layout_below="@+id/createContactTelNumberEditText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <Spinner
@@ -182,27 +193,25 @@
                 android:spinnerMode="dropdown" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Contact"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/createContactSaveButton"
                 android:layout_below="@+id/createContactCompanyNameTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_blue"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorAccent"
                 android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
         </RelativeLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

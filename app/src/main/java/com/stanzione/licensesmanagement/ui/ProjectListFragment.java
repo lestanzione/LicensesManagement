@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -48,6 +51,8 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
     private RecyclerView projectRecyclerView;
     private ArrayList<Project> projectArrayList;
 
+    private ProjectRecyclerAdapter projectRecyclerAdapter;
+
     private OnFragmentInteractionListener mListener;
 
     public ProjectListFragment() {
@@ -83,6 +88,8 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_project_list, container, false);
 
+        setHasOptionsMenu(true);
+
         newProjectButton = (Button) view.findViewById(R.id.newProjectButton);
         projectRecyclerView = (RecyclerView) view.findViewById(R.id.projectRecyclerView);
 
@@ -103,6 +110,24 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
         Operations ops = new Operations(this, CODE_LIST_PROJECT);
         ops.getProjectList();
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_company_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.menu_company_manage:
+                projectRecyclerAdapter.setShowEdit(!projectRecyclerAdapter.getShowEdit());
+                projectRecyclerAdapter.notifyDataSetChanged();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void showCreateProjectFragment(){
@@ -146,8 +171,10 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
 
             projectArrayList = (ArrayList<Project>) returnObject;
 
+            projectRecyclerAdapter = new ProjectRecyclerAdapter(getContext(), projectArrayList, loggedUser, this);
+
             projectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            projectRecyclerView.setAdapter(new ProjectRecyclerAdapter(getContext(), projectArrayList, loggedUser, this));
+            projectRecyclerView.setAdapter(projectRecyclerAdapter);
 
         }
         else if(operationCode == CODE_REMOVE_PROJECT){
@@ -179,6 +206,26 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
         transaction.replace(R.id.mainBody, projectDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onProjectToEdit(int position) {
+
+        Project selectedProject = projectArrayList.get(position);
+
+        Log.d(TAG, "selectedProject ID: " + selectedProject.getId());
+
+        ProjectEditFragment projectEditFragment = ProjectEditFragment.newInstance(loggedUser, selectedProject);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, projectEditFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction

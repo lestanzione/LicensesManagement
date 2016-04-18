@@ -1,5 +1,6 @@
 package com.stanzione.licensesmanagement.ui;
 
+import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,6 +34,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
 
     public interface OnContactListener{
         void onContactSelected(int position);
+        void onContactToEdit(int position);
         void onContactToDelete(int position);
     }
 
@@ -42,6 +44,11 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
     private ArrayList<Contact> values;
     private UserAccess loggedUser;
     private WeakReference<OnContactListener> activity;
+
+    private boolean isFirstLoad = true;
+    private boolean showEdit = false;
+    private float originalEditIconPosition = 0.0f;
+    private float originalRemoveIconPosition = 0.0f;
 
     public ContactRecyclerAdapter(Context context, ArrayList<Contact> values, UserAccess loggedUser, OnContactListener activity) {
         this.context = context;
@@ -70,7 +77,48 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
         holder.contactListItemEmail.setText(currentContact.getEmail());
         holder.contactListItemTelNumber.setText(currentContact.getTelNumber());
 
-        holder.contactListItemRemoveButton.setOnClickListener(new View.OnClickListener() {
+        if(showEdit){
+            holder.contactListItemRemoveIcon.setVisibility(View.VISIBLE);
+            holder.contactListItemEditIcon.setVisibility(View.VISIBLE);
+            //ObjectAnimator anim = ObjectAnimator.ofFloat(holder.companyListItemAddress, "alpha", 0f, 1f);
+            //anim.setDuration(1000);
+            //anim.start();
+            ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.contactListItemEditIcon, "translationX", holder.contactListItemEditIcon.getX(), originalEditIconPosition);
+            animEditIcon.setDuration(500);
+            animEditIcon.start();
+            ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.contactListItemRemoveIcon, "translationX", holder.contactListItemRemoveIcon.getX(), originalRemoveIconPosition);
+            animRemoveIcon.setDuration(500);
+            animRemoveIcon.start();
+        }
+        else{
+            if(isFirstLoad) {
+                holder.contactListItemEditIcon.setVisibility(View.INVISIBLE);
+                holder.contactListItemRemoveIcon.setVisibility(View.INVISIBLE);
+            }
+            else {
+                holder.contactListItemEditIcon.setVisibility(View.VISIBLE);
+                holder.contactListItemRemoveIcon.setVisibility(View.VISIBLE);
+            }
+
+            ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.contactListItemEditIcon, "translationX", originalEditIconPosition, originalEditIconPosition + 300);
+            animEditIcon.setDuration(500);
+            animEditIcon.start();
+
+            ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.contactListItemRemoveIcon, "translationX", originalRemoveIconPosition, originalRemoveIconPosition + 300);
+            animRemoveIcon.setDuration(500);
+            animRemoveIcon.start();
+
+        }
+
+        holder.contactListItemEditIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "selectedContact ID: " + currentContact.getId());
+                activity.get().onContactToEdit(contactPosition);
+            }
+        });
+
+        holder.contactListItemRemoveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -116,6 +164,15 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
         return (null != values ? values.size() : 0);
     }
 
+    public void setShowEdit(boolean showEdit){
+        this.showEdit = showEdit;
+        isFirstLoad = false;
+    }
+
+    public boolean getShowEdit(){
+        return showEdit;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout contactListRelativeLayout;
         TextView contactListItemName;
@@ -123,7 +180,8 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
         TextView contactListItemCompanyName;
         TextView contactListItemEmail;
         TextView contactListItemTelNumber;
-        Button contactListItemRemoveButton;
+        ImageView contactListItemEditIcon;
+        ImageView contactListItemRemoveIcon;
 
         public ViewHolder(View userView) {
             super(userView);
@@ -133,7 +191,8 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
             this.contactListItemCompanyName = (TextView) userView.findViewById(R.id.contactListItemCompanyName);
             this.contactListItemEmail = (TextView) userView.findViewById(R.id.contactListItemEmail);
             this.contactListItemTelNumber = (TextView) userView.findViewById(R.id.contactListItemTelNumber);
-            this.contactListItemRemoveButton = (Button) userView.findViewById(R.id.contactListItemRemoveButton);
+            this.contactListItemEditIcon = (ImageView) userView.findViewById(R.id.contactListItemEditIcon);
+            this.contactListItemRemoveIcon = (ImageView) userView.findViewById(R.id.contactListItemRemoveIcon);
         }
     }
 

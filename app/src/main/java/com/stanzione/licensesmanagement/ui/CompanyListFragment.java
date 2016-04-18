@@ -128,7 +128,7 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.menu_company_edit:
+            case R.id.menu_company_manage:
                 companyRecyclerAdapter.setShowEdit(!companyRecyclerAdapter.getShowEdit());
                 companyRecyclerAdapter.notifyDataSetChanged();
         }
@@ -212,6 +212,26 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
         transaction.replace(R.id.mainBody, companyDetailsFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
+    @Override
+    public void onCompanyToEdit(int position) {
+
+        Company selectedCompany = companyArrayList.get(position);
+
+        Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
+
+        CompanyEditFragment companyEditFragment = CompanyEditFragment.newInstance(loggedUser, selectedCompany);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.mainBody, companyEditFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction

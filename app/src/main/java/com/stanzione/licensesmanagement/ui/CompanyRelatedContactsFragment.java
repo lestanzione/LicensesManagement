@@ -141,6 +141,11 @@ public class CompanyRelatedContactsFragment extends Fragment implements Operatio
     }
 
     @Override
+    public void onContactToEdit(int position) {
+
+    }
+
+    @Override
     public void onContactToDelete(int position) {
 
     }

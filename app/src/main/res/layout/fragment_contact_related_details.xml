@@ -18,12 +18,13 @@
                 android:id="@+id/contactDetailIdTextView"
                 android:text="ID"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -35,11 +36,11 @@
                 android:layout_below="@+id/contactDetailIdTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -47,13 +48,14 @@
                 android:layout_height="wrap_content"
                 android:text="First Name"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailFirstNameTextView"
                 android:layout_below="@+id/contactDetailId"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -65,11 +67,11 @@
                 android:layout_below="@+id/contactDetailFirstNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -77,13 +79,14 @@
                 android:layout_height="wrap_content"
                 android:text="Last Name"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailLastNameTextView"
                 android:layout_below="@+id/contactDetailFirstName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -95,11 +98,11 @@
                 android:layout_below="@+id/contactDetailLastNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -107,13 +110,14 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailTitleTextView"
                 android:layout_below="@+id/contactDetailLastName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -125,11 +129,11 @@
                 android:layout_below="@+id/contactDetailTitleTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -137,13 +141,14 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailEmailTextView"
                 android:layout_below="@+id/contactDetailTitle"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -155,11 +160,11 @@
                 android:layout_below="@+id/contactDetailEmailTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -167,13 +172,14 @@
                 android:layout_height="wrap_content"
                 android:text="Tel Number"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailTelNumberTextView"
                 android:layout_below="@+id/contactDetailEmail"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -185,11 +191,11 @@
                 android:layout_below="@+id/contactDetailTelNumberTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -197,13 +203,14 @@
                 android:layout_height="wrap_content"
                 android:text="Creation Date"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailCreationDateTextView"
                 android:layout_below="@+id/contactDetailTelNumber"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -215,11 +222,11 @@
                 android:layout_below="@+id/contactDetailCreationDateTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -227,13 +234,14 @@
                 android:layout_height="wrap_content"
                 android:text="Modification Date"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailModificationDateTextView"
                 android:layout_below="@+id/contactDetailCreationDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -245,11 +253,11 @@
                 android:layout_below="@+id/contactDetailModificationDateTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -257,13 +265,14 @@
                 android:layout_height="wrap_content"
                 android:text="Creation User"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailCreationUserTextView"
                 android:layout_below="@+id/contactDetailModificationDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -275,11 +284,11 @@
                 android:layout_below="@+id/contactDetailCreationUserTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -287,13 +296,14 @@
                 android:layout_height="wrap_content"
                 android:text="Modification User"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailModificationUserTextView"
                 android:layout_below="@+id/contactDetailCreationUser"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -305,11 +315,11 @@
                 android:layout_below="@+id/contactDetailModificationUserTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -317,13 +327,14 @@
                 android:layout_height="wrap_content"
                 android:text="Company"
                 android:textSize="16sp"
+                android:textColor="@color/colorPrimaryText"
                 android:id="@+id/contactDetailCompanyNameTextView"
                 android:layout_below="@+id/contactDetailModificationUser"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/data_detail_title" />
 
             <TextView
@@ -335,11 +346,11 @@
                 android:layout_below="@+id/contactDetailCompanyNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/data_detail" />
 
             <TextView
@@ -351,9 +362,9 @@
                 android:layout_below="@+id/contactDetailCompanyName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -367,24 +378,22 @@
                 android:enabled="false"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/contactDetailEditButton"
-                android:text="Edit"
+                android:text="Edit Contact"
+                android:textColor="@color/colorPrimaryText"
                 android:layout_below="@+id/contactDetailActiveTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_green"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorAccent"
                 android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
 
         </RelativeLayout>
 
