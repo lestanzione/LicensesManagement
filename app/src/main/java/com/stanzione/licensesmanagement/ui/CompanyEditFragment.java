@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class CompanyEditFragment extends Fragment implements Operations.Operatio
     private TextView companyModificationUser;
     private CheckBox companyActive;
     private Button saveCompanyButton;
+    private ProgressBar progressBar;
 
     public CompanyEditFragment() {
         // Required empty public constructor
@@ -94,6 +96,9 @@ public class CompanyEditFragment extends Fragment implements Operations.Operatio
         companyModificationUser = (TextView) view.findViewById(R.id.companyEditModificationUser);
         companyActive = (CheckBox) view.findViewById(R.id.companyEditActive);
         saveCompanyButton = (Button) view.findViewById(R.id.companyEditSaveButton);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
         saveCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +129,8 @@ public class CompanyEditFragment extends Fragment implements Operations.Operatio
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_EDIT_COMPANY);
         ops.editCompany(selectedCompany.getId(), address, loggedUser.getId());
 
@@ -151,15 +158,21 @@ public class CompanyEditFragment extends Fragment implements Operations.Operatio
 
         Toast.makeText(getActivity(), "Company edited successfully!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

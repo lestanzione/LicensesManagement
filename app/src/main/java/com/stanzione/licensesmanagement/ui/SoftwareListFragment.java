@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
@@ -47,6 +48,7 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
     private Button newSoftwareButton;
     private RecyclerView softwareRecyclerView;
     private ArrayList<Software> softwareArrayList;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -84,6 +86,7 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
 
         newSoftwareButton = (Button) view.findViewById(R.id.newSoftwareButton);
         softwareRecyclerView = (RecyclerView) view.findViewById(R.id.softwareRecyclerView);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         newSoftwareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,15 +149,21 @@ public class SoftwareListFragment extends Fragment implements Operations.Operati
         softwareRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         softwareRecyclerView.setAdapter(new SoftwareRecyclerAdapter(getActivity(), softwareArrayList, loggedUser, this));
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

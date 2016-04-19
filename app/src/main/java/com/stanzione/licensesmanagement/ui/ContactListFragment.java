@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
@@ -51,8 +52,11 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
     private Button newContactButton;
     private RecyclerView contactRecyclerView;
     private ArrayList<Contact> contactArrayList;
+    private ProgressBar progressBar;
 
     private ContactRecyclerAdapter contactRecyclerAdapter;
+
+    private int positionToDelete;
 
     private OnFragmentInteractionListener mListener;
 
@@ -93,6 +97,7 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
 
         newContactButton = (Button) view.findViewById(R.id.newContactButton);
         contactRecyclerView = (RecyclerView) view.findViewById(R.id.contactRecyclerView);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         newContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,20 +184,27 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
 
         }
         else if(operationCode == CODE_REMOVE_CONTACT){
-
             Toast.makeText(getContext(), "Contact removed successfully!", Toast.LENGTH_LONG).show();
 
+            contactArrayList.remove(positionToDelete);
+            contactRecyclerAdapter.notifyDataSetChanged();
         }
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
@@ -239,9 +251,13 @@ public class ContactListFragment extends Fragment implements Operations.Operatio
     @Override
     public void onContactToDelete(int position) {
 
-        Contact selectedContact = contactArrayList.get(position);
+        positionToDelete = position;
+
+        Contact selectedContact = contactArrayList.get(positionToDelete);
 
         Log.d(TAG, "selectedContact ID: " + selectedContact.getId());
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_REMOVE_CONTACT);
         ops.removeContact(selectedContact.getId(), loggedUser.getId());

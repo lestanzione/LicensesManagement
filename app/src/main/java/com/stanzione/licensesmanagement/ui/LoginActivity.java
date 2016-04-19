@@ -1,13 +1,16 @@
 package com.stanzione.licensesmanagement.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
@@ -33,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
     private TextInputLayout passwordTextInput;
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private ProgressBar progressBar;
 
     public AsyncTask<String, Void, Integer> doLoginTask;
 
@@ -46,6 +50,9 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
         passwordTextInput = (TextInputLayout) findViewById(R.id.passwordTextInput);
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
 		toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
@@ -87,28 +94,20 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
         if(hasError)
             return;
 
+        hideSoftKeyboard();
+
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_LOGIN);
         ops.doLogin(username, password);
 
     }
 
-    // Reads an InputStream and converts it to a String.
-    public String convertToString(InputStream stream) throws IOException {
-
-        InputStreamReader is = new InputStreamReader(stream);
-        StringBuilder sb = new StringBuilder();
-        BufferedReader br = new BufferedReader(is);
-        String read = br.readLine();
-
-        while(read != null) {
-            //System.out.println(read);
-            sb.append(read);
-            read = br.readLine();
-
+    private void hideSoftKeyboard(){
+        if(getCurrentFocus()!=null && getCurrentFocus() instanceof EditText){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getWindow().getCurrentFocus().getWindowToken(), 0);
         }
-
-        return sb.toString();
-
     }
 
     @Override
@@ -121,6 +120,8 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
 
         startActivity(intent);
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -128,10 +129,14 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
 
         Toast.makeText(this, "Could not log into the system. Wrong username or password!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 }

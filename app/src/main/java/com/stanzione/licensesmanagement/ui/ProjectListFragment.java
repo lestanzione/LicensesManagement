@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
@@ -50,8 +51,11 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
     private Button newProjectButton;
     private RecyclerView projectRecyclerView;
     private ArrayList<Project> projectArrayList;
+    private ProgressBar progressBar;
 
     private ProjectRecyclerAdapter projectRecyclerAdapter;
+
+    private int positionToDelete;
 
     private OnFragmentInteractionListener mListener;
 
@@ -92,6 +96,7 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
 
         newProjectButton = (Button) view.findViewById(R.id.newProjectButton);
         projectRecyclerView = (RecyclerView) view.findViewById(R.id.projectRecyclerView);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         newProjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,17 +184,26 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
         }
         else if(operationCode == CODE_REMOVE_PROJECT){
             Toast.makeText(getContext(), "Project removed successfully!", Toast.LENGTH_LONG).show();
+
+            projectArrayList.remove(positionToDelete);
+            projectRecyclerAdapter.notifyDataSetChanged();
         }
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
@@ -236,12 +250,16 @@ public class ProjectListFragment extends Fragment implements Operations.Operatio
     @Override
     public void onProjectToDelete(int position) {
 
-        Project selectedProject = projectArrayList.get(position);
+        positionToDelete = position;
+
+        Project selectedProject = projectArrayList.get(positionToDelete);
 
         Log.d(TAG, "selectedProject ID: " + selectedProject.getId());
 
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_REMOVE_PROJECT);
-        ops.removeCompany(selectedProject.getId(), loggedUser.getId());
+        ops.removeProject(selectedProject.getId(), loggedUser.getId());
 
     }
 

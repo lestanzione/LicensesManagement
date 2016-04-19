@@ -20,7 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stanzione.licensesmanagement.R;
-import com.stanzione.licensesmanagement.helper.RemoveEntityDialog;
 import com.stanzione.licensesmanagement.model.Company;
 import com.stanzione.licensesmanagement.model.Contact;
 import com.stanzione.licensesmanagement.model.UserAccess;
@@ -84,14 +83,12 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
         if(showEdit){
             holder.companyListItemRemoveIcon.setVisibility(View.VISIBLE);
             holder.companyListItemEditIcon.setVisibility(View.VISIBLE);
-            //ObjectAnimator anim = ObjectAnimator.ofFloat(holder.companyListItemAddress, "alpha", 0f, 1f);
-            //anim.setDuration(1000);
-            //anim.start();
             ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.companyListItemEditIcon, "translationX", holder.companyListItemEditIcon.getX(), originalEditIconPosition);
             animEditIcon.setDuration(500);
             animEditIcon.start();
             ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.companyListItemRemoveIcon, "translationX", holder.companyListItemRemoveIcon.getX(), originalRemoveIconPosition);
             animRemoveIcon.setDuration(500);
+            animRemoveIcon.setStartDelay(100);
             animRemoveIcon.start();
         }
         else{
@@ -106,6 +103,7 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
 
             ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.companyListItemEditIcon, "translationX", originalEditIconPosition, originalEditIconPosition + 300);
             animEditIcon.setDuration(500);
+            animEditIcon.setStartDelay(100);
             animEditIcon.start();
 
             ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.companyListItemRemoveIcon, "translationX", originalRemoveIconPosition, originalRemoveIconPosition + 300);

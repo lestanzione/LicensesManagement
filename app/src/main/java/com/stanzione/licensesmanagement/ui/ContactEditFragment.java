@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,7 @@ public class ContactEditFragment extends Fragment implements Operations.Operatio
     private TextView contactCompanyName;
     private CheckBox contactActive;
     private Button saveContactButton;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -104,6 +106,9 @@ public class ContactEditFragment extends Fragment implements Operations.Operatio
         contactCompanyName = (TextView) view.findViewById(R.id.contactEditCompanyName);
         contactActive = (CheckBox) view.findViewById(R.id.contactEditActive);
         saveContactButton = (Button) view.findViewById(R.id.contactEditSaveButton);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
         saveContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +152,8 @@ public class ContactEditFragment extends Fragment implements Operations.Operatio
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_EDIT_CONTACT);
         ops.editContact(selectedContact.getId(), firstName, lastName, title, email, telNumber, loggedUser.getId());
 
@@ -174,15 +181,21 @@ public class ContactEditFragment extends Fragment implements Operations.Operatio
 
         Toast.makeText(getActivity(), "Contact edited successfully!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

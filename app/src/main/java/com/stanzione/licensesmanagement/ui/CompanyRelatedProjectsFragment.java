@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
@@ -43,6 +44,7 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
     private static final String TAG = CompanyRelatedProjectsFragment.class.getSimpleName();
 
     private RecyclerView companyRelatedProjectRecyclerView;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -83,6 +85,7 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
         View view = inflater.inflate(R.layout.fragment_company_related_projects, container, false);
 
         companyRelatedProjectRecyclerView = (RecyclerView) view.findViewById(R.id.companyRelatedProjectRecyclerView);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         return view;
     }
@@ -123,15 +126,21 @@ public class CompanyRelatedProjectsFragment extends Fragment implements Operatio
         companyRelatedProjectRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         companyRelatedProjectRecyclerView.setAdapter(new ProjectRecyclerAdapter(getContext(), projectArrayList, loggedUser, this));
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

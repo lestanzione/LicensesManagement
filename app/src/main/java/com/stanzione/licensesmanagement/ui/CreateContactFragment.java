@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
     private EditText contactTelNumberEditText;
     private Spinner contactCompanyNameSpinner;
     private Button saveContactButton;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -92,6 +94,7 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
         contactTelNumberEditText = (EditText) view.findViewById(R.id.createContactTelNumberEditText);
         contactCompanyNameSpinner = (Spinner) view.findViewById(R.id.createContactCompanyNameSpinner);
         saveContactButton = (Button) view.findViewById(R.id.createContactSaveButton);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         saveContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +133,8 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
             Toast.makeText(getActivity(), "Preencher todos os campos!", Toast.LENGTH_LONG).show();
             return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_CREATE_CONTACT);
         ops.addContact(contactFirstName, contactLastName, contactTitle, contactEmail, contactTelNumber, contactCompanyId, loggedUser.getId());
@@ -188,15 +193,21 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
 
         }
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class CreateProjectFragment extends Fragment implements Operations.Operat
     private EditText projectNameEditText;
     private Spinner projectCompanyNameSpinner;
     private Button saveProjectButton;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -86,6 +88,7 @@ public class CreateProjectFragment extends Fragment implements Operations.Operat
         projectNameEditText = (EditText) view.findViewById(R.id.createProjectNameEditText);
         projectCompanyNameSpinner = (Spinner) view.findViewById(R.id.createProjectCompanyNameSpinner);
         saveProjectButton = (Button) view.findViewById(R.id.createProjectSaveButton);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         saveProjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +114,8 @@ public class CreateProjectFragment extends Fragment implements Operations.Operat
             Toast.makeText(getActivity(), "Preencher todos os campos!", Toast.LENGTH_LONG).show();
             return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_CREATE_PROJECT);
         ops.addProject(projectName, projectCompanyId, loggedUser.getId());
@@ -169,15 +174,21 @@ public class CreateProjectFragment extends Fragment implements Operations.Operat
 
         }
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

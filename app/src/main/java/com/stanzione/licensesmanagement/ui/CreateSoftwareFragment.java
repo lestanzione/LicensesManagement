@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class CreateSoftwareFragment extends Fragment implements Operations.Opera
     private EditText softwareCodeEditText;
     private EditText softwareTypeEditText;
     private Button saveSoftwareButton;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -83,6 +85,9 @@ public class CreateSoftwareFragment extends Fragment implements Operations.Opera
         softwareCodeEditText = (EditText) view.findViewById(R.id.createSoftwareCodeEditText);
         softwareTypeEditText = (EditText) view.findViewById(R.id.createSoftwareTypeEditText);
         saveSoftwareButton = (Button) view.findViewById(R.id.createSoftwareSaveButton);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
         saveSoftwareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +113,8 @@ public class CreateSoftwareFragment extends Fragment implements Operations.Opera
             Toast.makeText(getActivity(), "Preencher todos os campos!", Toast.LENGTH_LONG).show();
             return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_CREATE_SOFTWARE);
         ops.addSoftware(softwareName, softwareCode, softwareType, loggedUser.getId());
@@ -136,15 +143,21 @@ public class CreateSoftwareFragment extends Fragment implements Operations.Opera
 
         Toast.makeText(getActivity(), "Software created successfully!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

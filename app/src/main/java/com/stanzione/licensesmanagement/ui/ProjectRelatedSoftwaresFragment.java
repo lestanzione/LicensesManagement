@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
@@ -41,6 +42,7 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
     private static final String TAG = ProjectDetailsFragment.class.getSimpleName();
 
     private RecyclerView projectRelatedSoftwareRecyclerView;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -81,6 +83,7 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
         View view = inflater.inflate(R.layout.fragment_project_related_softwares, container, false);
 
         projectRelatedSoftwareRecyclerView = (RecyclerView) view.findViewById(R.id.projectRelatedSoftwareRecyclerView);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         return view;
     }
@@ -120,15 +123,20 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
 
         projectRelatedSoftwareRecyclerView.setAdapter(new ProjectSoftwareRecyclerAdapter(getActivity().getApplicationContext(), projectSoftwareArrayList, loggedUser, this));
 
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

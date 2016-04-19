@@ -33,6 +33,7 @@
                 android:textSize="14sp"
                 android:id="@+id/createCompanyNameEditText"
                 android:inputType="text"
+                android:singleLine="true"
                 android:layout_below="@+id/createCompanyNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -64,6 +65,7 @@
                 android:textSize="14sp"
                 android:id="@+id/createCompanyAddressEditText"
                 android:inputType="text"
+                android:singleLine="true"
                 android:layout_below="@+id/createCompanyAddressTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -91,6 +93,14 @@
                 android:minHeight="0dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="true"/>
 
         </RelativeLayout>
 

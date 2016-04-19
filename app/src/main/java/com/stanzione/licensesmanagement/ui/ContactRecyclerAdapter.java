@@ -88,6 +88,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
             animEditIcon.start();
             ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.contactListItemRemoveIcon, "translationX", holder.contactListItemRemoveIcon.getX(), originalRemoveIconPosition);
             animRemoveIcon.setDuration(500);
+            animRemoveIcon.setStartDelay(100);
             animRemoveIcon.start();
         }
         else{
@@ -102,6 +103,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
 
             ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.contactListItemEditIcon, "translationX", originalEditIconPosition, originalEditIconPosition + 300);
             animEditIcon.setDuration(500);
+            animEditIcon.setStartDelay(100);
             animEditIcon.start();
 
             ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.contactListItemRemoveIcon, "translationX", originalRemoveIconPosition, originalRemoveIconPosition + 300);

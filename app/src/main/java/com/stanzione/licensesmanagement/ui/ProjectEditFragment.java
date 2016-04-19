@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class ProjectEditFragment extends Fragment implements Operations.Operatio
     private TextView projectCompanyName;
     private CheckBox projectActive;
     private Button saveProjectButton;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -100,6 +102,9 @@ public class ProjectEditFragment extends Fragment implements Operations.Operatio
         projectCompanyName = (TextView) view.findViewById(R.id.projectEditCompanyName);
         projectActive = (CheckBox) view.findViewById(R.id.projectEditActive);
         saveProjectButton = (Button) view.findViewById(R.id.projectEditSaveButton);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
         saveProjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +142,8 @@ public class ProjectEditFragment extends Fragment implements Operations.Operatio
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_EDIT_PROJECT);
         ops.editProject(selectedProject.getId(), name, startDate, endDate, loggedUser.getId());
 
@@ -164,15 +171,21 @@ public class ProjectEditFragment extends Fragment implements Operations.Operatio
 
         Toast.makeText(getActivity(), "Project edited successfully!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

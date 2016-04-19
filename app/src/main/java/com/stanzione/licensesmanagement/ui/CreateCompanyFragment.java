@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
@@ -35,6 +36,7 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
     private EditText companyNameEditText;
     private EditText companyAddressEditText;
     private Button saveCompanyButton;
+    private ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,6 +75,7 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
 
         companyNameEditText = (EditText) view.findViewById(R.id.createCompanyNameEditText);
         companyAddressEditText = (EditText) view.findViewById(R.id.createCompanyAddressEditText);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         saveCompanyButton = (Button) view.findViewById(R.id.createCompanySaveButton);
         saveCompanyButton.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +100,8 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
             Toast.makeText(getActivity(), "Preencher todos os campos!", Toast.LENGTH_LONG).show();
             return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_CREATE_COMPANY);
         ops.addCompany(companyName, companyAddress, loggedUser.getId());
@@ -125,6 +130,8 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
 
         Toast.makeText(getActivity(), "Company added successfully!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -132,10 +139,14 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
 
         Toast.makeText(getActivity(), "Failed to add company!", Toast.LENGTH_LONG).show();
 
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

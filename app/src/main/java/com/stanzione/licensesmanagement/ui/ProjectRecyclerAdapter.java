@@ -78,6 +78,7 @@ public class ProjectRecyclerAdapter extends RecyclerView.Adapter<ProjectRecycler
             animEditIcon.start();
             ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.projectListItemRemoveIcon, "translationX", holder.projectListItemRemoveIcon.getX(), originalRemoveIconPosition);
             animRemoveIcon.setDuration(500);
+            animRemoveIcon.setStartDelay(100);
             animRemoveIcon.start();
         }
         else{
@@ -92,6 +93,7 @@ public class ProjectRecyclerAdapter extends RecyclerView.Adapter<ProjectRecycler
 
             ObjectAnimator animEditIcon = ObjectAnimator.ofFloat(holder.projectListItemEditIcon, "translationX", originalEditIconPosition, originalEditIconPosition + 300);
             animEditIcon.setDuration(500);
+            animEditIcon.setStartDelay(100);
             animEditIcon.start();
 
             ObjectAnimator animRemoveIcon = ObjectAnimator.ofFloat(holder.projectListItemRemoveIcon, "translationX", originalRemoveIconPosition, originalRemoveIconPosition + 300);

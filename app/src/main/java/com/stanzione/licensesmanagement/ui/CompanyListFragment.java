@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
@@ -56,8 +57,11 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
     private Button newCompanyButton;
     private RecyclerView companyRecyclerView;
     private ArrayList<Company> companyArrayList;
+    private ProgressBar progressBar;
 
     private CompanyRecyclerAdapter companyRecyclerAdapter;
+
+    private int positionToDelete;
 
     private OnFragmentInteractionListener mListener;
 
@@ -98,6 +102,7 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
 
         newCompanyButton = (Button) view.findViewById(R.id.newCompanyButton);
         companyRecyclerView = (RecyclerView) view.findViewById(R.id.companyRecyclerView);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         newCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,24 +190,36 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         }
         else if(operationCode == CODE_REMOVE_COMPANY){
             Toast.makeText(getContext(), "Company removed successfully!", Toast.LENGTH_LONG).show();
+
+            companyArrayList.remove(positionToDelete);
+            companyRecyclerAdapter.notifyDataSetChanged();
         }
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
     @Override
     public void onOperationFail(Object returnObject, int operationCode) {
         Log.d(TAG, "Operation fail!");
+
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
     public void onOperationError(Object returnObject, int operationCode) {
+
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
     @Override
     public void onCompanySelected(int position) {
 
-        Company selectedCompany = companyArrayList.get(position);
+        positionToDelete = position;
+
+        Company selectedCompany = companyArrayList.get(positionToDelete);
 
         Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
 
@@ -245,6 +262,8 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         Company selectedCompany = companyArrayList.get(position);
 
         Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_REMOVE_COMPANY);
         ops.removeCompany(selectedCompany.getId(), loggedUser.getId());
