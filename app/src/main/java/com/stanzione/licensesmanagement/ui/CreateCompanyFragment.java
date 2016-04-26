@@ -1,7 +1,6 @@
 package com.stanzione.licensesmanagement.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
+import com.stanzione.licensesmanagement.helper.Utils;
 import com.stanzione.licensesmanagement.model.UserAccess;
 
 /**
@@ -77,6 +77,8 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
         companyAddressEditText = (EditText) view.findViewById(R.id.createCompanyAddressEditText);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
+        progressBar.setVisibility(View.INVISIBLE);
+
         saveCompanyButton = (Button) view.findViewById(R.id.createCompanySaveButton);
         saveCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +100,11 @@ public class CreateCompanyFragment extends Fragment implements Operations.Operat
 
         if(companyName.isEmpty() || companyAddress.isEmpty()){
             Toast.makeText(getActivity(), "Preencher todos os campos!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
             return;
         }
 

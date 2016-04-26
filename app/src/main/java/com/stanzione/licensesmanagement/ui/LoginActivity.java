@@ -15,12 +15,8 @@ import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
+import com.stanzione.licensesmanagement.helper.Utils;
 import com.stanzione.licensesmanagement.model.UserAccess;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import android.support.v7.widget.*;
 
@@ -95,6 +91,11 @@ public class LoginActivity extends AppCompatActivity implements Operations.Opera
             return;
 
         hideSoftKeyboard();
+
+        if(!Utils.isOnline(this)){
+            Toast.makeText(this, "There is no internet connection!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         progressBar.setVisibility(View.VISIBLE);
 

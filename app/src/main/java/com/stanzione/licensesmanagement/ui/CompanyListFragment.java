@@ -1,13 +1,10 @@
 package com.stanzione.licensesmanagement.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,21 +14,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
+import com.stanzione.licensesmanagement.helper.Utils;
 import com.stanzione.licensesmanagement.model.Company;
-import com.stanzione.licensesmanagement.model.Contact;
 import com.stanzione.licensesmanagement.model.UserAccess;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -104,6 +95,8 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         companyRecyclerView = (RecyclerView) view.findViewById(R.id.companyRecyclerView);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
+        progressBar.setVisibility(View.INVISIBLE);
+
         newCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +111,14 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
     public void onStart() {
 
         super.onStart();
+
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_LIST_COMPANY);
         ops.getCompanyList();
 
@@ -262,6 +263,11 @@ public class CompanyListFragment extends Fragment implements Operations.Operatio
         Company selectedCompany = companyArrayList.get(position);
 
         Log.d(TAG, "selectedCompany ID: " + selectedCompany.getId());
+
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         progressBar.setVisibility(View.VISIBLE);
 

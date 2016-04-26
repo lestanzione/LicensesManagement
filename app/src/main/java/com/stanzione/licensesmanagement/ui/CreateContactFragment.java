@@ -1,7 +1,6 @@
 package com.stanzione.licensesmanagement.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
+import com.stanzione.licensesmanagement.helper.Utils;
 import com.stanzione.licensesmanagement.model.Company;
 import com.stanzione.licensesmanagement.model.UserAccess;
 
@@ -96,6 +96,8 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
         saveContactButton = (Button) view.findViewById(R.id.createContactSaveButton);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
+        progressBar.setVisibility(View.INVISIBLE);
+
         saveContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +136,11 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
             return;
         }
 
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         progressBar.setVisibility(View.VISIBLE);
 
         Operations ops = new Operations(this, CODE_CREATE_CONTACT);
@@ -145,6 +152,14 @@ public class CreateContactFragment extends Fragment implements Operations.Operat
     public void onStart() {
 
         super.onStart();
+
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_LIST_COMPANY);
         ops.getCompanyList();
 

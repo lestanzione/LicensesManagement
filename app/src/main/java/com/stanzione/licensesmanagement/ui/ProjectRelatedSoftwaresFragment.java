@@ -1,7 +1,6 @@
 package com.stanzione.licensesmanagement.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,11 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
+import com.stanzione.licensesmanagement.helper.Utils;
 import com.stanzione.licensesmanagement.model.Project;
 import com.stanzione.licensesmanagement.model.ProjectSoftware;
 import com.stanzione.licensesmanagement.model.UserAccess;
@@ -85,6 +85,8 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
         projectRelatedSoftwareRecyclerView = (RecyclerView) view.findViewById(R.id.projectRelatedSoftwareRecyclerView);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
+        progressBar.setVisibility(View.INVISIBLE);
+
         return view;
     }
 
@@ -92,6 +94,14 @@ public class ProjectRelatedSoftwaresFragment extends Fragment implements Operati
     public void onStart() {
 
         super.onStart();
+
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
         Operations ops = new Operations(this, CODE_LIST_SOFTWARES_FROM_PROJECT);
         ops.getProjectSoftwareListFromProject(selectedProject.getId());
 

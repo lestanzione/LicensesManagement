@@ -1,7 +1,6 @@
 package com.stanzione.licensesmanagement.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 
 import com.stanzione.licensesmanagement.Operations;
 import com.stanzione.licensesmanagement.R;
+import com.stanzione.licensesmanagement.helper.Utils;
 import com.stanzione.licensesmanagement.model.Project;
 import com.stanzione.licensesmanagement.model.UserAccess;
 
@@ -139,6 +139,11 @@ public class ProjectEditFragment extends Fragment implements Operations.Operatio
 
         if(name.isEmpty()){
             Toast.makeText(getActivity(), "Nome não pode estar em branco!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(!Utils.isOnline(this.getActivity())){
+            Toast.makeText(this.getActivity(), "There is no internet connection!", Toast.LENGTH_SHORT).show();
             return;
         }
 
